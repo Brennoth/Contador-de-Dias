@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/scss/style.scss">
+    <link rel="stylesheet" href="assets/scss/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <main class="container">
+        
+        <!-- Cabeçalho da página -->
+        <header class="header">
+            <span class="badge">🌙 MODO ESCURO</span>
+            <h1>Smart Countdown</h1>
+            <p>Um painel elegante para marcar o tempo até o que importa: lançamentos, viagens, casamentos ou qualquer data que mereça espera.</p>
+        </header>
+
+        <!-- Seção do Formulário e Contagem Ativa -->
+        <section class="dashboard-grid">
+            
+            <!-- Formulário para Novo Evento -->
+            <div class="card form-card">
+                <div class="card-header">
+                    <span>⚡ NOVO EVENTO</span>
+                    <h2>Comece a contagem</h2>
+                </div>
+                
+                <form>
+                    <div class="input-group">
+                        <label for="nome-evento">Nome do evento</label>
+                        <input type="text" id="nome-evento" placeholder="Ex.: Lançamento de produto">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="data-hora">Data e hora</label>
+                        <input type="datetime-local" id="data-hora">
+                    </div>
+
+                    <button type="submit" class="btn-submit">⚡ Iniciar contagem</button>
+                </form>
+            </div>
+
+            <!-- Bloco de Contagem em Tempo Real -->
+            <div class="card countdown-card">
+                <div class="card-header-flex">
+                    <div>
+                        <span class="subtitle">CONTAGEM EM TEMPO REAL</span>
+                        <h2>Alma</h2>
+                    </div>
+                    <span class="update-info">Atualiza a cada segundo</span>
+                </div>
+
+                <!-- Caixas dos números da contagem -->
+                <div class="countdown-timers">
+                    <div class="timer-box">
+                        <span class="timer-number">16</span>
+                        <span class="timer-label">DIAS</span>
+                    </div>
+                    <div class="timer-box">
+                        <span class="timer-number">04</span>
+                        <span class="timer-label">HORAS</span>
+                    </div>
+                    <div class="timer-box">
+                        <span class="timer-number">01</span>
+                        <span class="timer-label">MINUTOS</span>
+                    </div>
+                    <div class="timer-box">
+                        <span class="timer-number">56</span>
+                        <span class="timer-label">SEGUNDOS</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Seção de Eventos Salvos -->
+        <section class="saved-section">
+            <span class="subtitle">BIBLIOTECA LOCAL</span>
+            <h2>Eventos salvos</h2>
+
+            <div class="saved-grid">
+                <!-- Card de Evento Salvo 1 -->
+                <div class="saved-card active-saved">
+                    <div class="saved-info">
+                        <h3>Alma</h3>
+                        <p>31 de out. de 2026, 00:00</p>
+                    </div>
+                    <span class="saved-badge">16D 04H 01M</span>
+                </div>
+
+                <!-- Card de Evento Salvo 2 -->
+                <div class="saved-card">
+                    <div class="saved-info">
+                        <h3>Rock Rio</h3>
+                        <p>10 de set. de 2028, 00:00</p>
+                    </div>
+                    <span class="saved-badge">93D 04H 01M</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+</body>
+</html>
