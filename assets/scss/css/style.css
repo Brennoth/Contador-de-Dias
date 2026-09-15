@@ -7,25 +7,16 @@
 }
 
 html {
-  font-size: 62.5%; /* Facilita a conta: 1rem = 10px */
+  font-size: 62.5%;
 }
 
 body {
   background-color: #0b0b0f;
   color: #f1f1f3;
-  padding: 1.6rem; /* Equivalente a 16px */
+  padding: 1.6rem;
   min-height: 100vh;
 }
 
-.container {
-  max-width: 120rem; /* Equivalente a 1200px */
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem; /* Equivalente a 24px */
-}
-
-/* Cabeçalho */
 .header {
   text-align: center;
   padding: 2.4rem 0;
@@ -33,78 +24,103 @@ body {
 .header .badge {
   background-color: #1a1a24;
   color: #e5c07b;
-  font-size: 1.1rem; /* Equivalente a 11px */
+  font-size: 1.1rem;
+  /* Equivalente a 11px */
   font-weight: 700;
-  padding: 0.6rem 1.2rem; /* Equivalente a 6px 12px */
-  border-radius: 2rem; /* Equivalente a 20px */
+  padding: 0.6rem 1.2rem;
+  /* Equivalente a 6px 12px */
+  border-radius: 2rem;
+  /* Equivalente a 20px */
   display: inline-block;
   margin-bottom: 1.2rem;
   border: 1px solid #2a2a3c;
 }
 .header h1 {
-  font-size: 2.4rem; /* Equivalente a 24px */
+  font-size: 2.4rem;
+  /* Equivalente a 24px */
   font-weight: 800;
   margin-bottom: 0.8rem;
 }
 .header p {
-  font-size: 1.3rem; /* Equivalente a 13px */
+  font-size: 1.3rem;
+  /* Equivalente a 13px */
   color: #9ba1a6;
   line-height: 1.5;
-  max-width: 60rem; /* Equivalente a 600px */
+  max-width: 60rem;
+  /* Equivalente a 600px */
   margin: 0 auto;
 }
 
-/* Estilização Geral dos Cards */
-.card {
+.main {
+  max-width: 120rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+.main .card {
   background-color: #121218;
   border: 1px solid #22222f;
-  border-radius: 1.6rem; /* Equivalente a 16px */
-  padding: 2rem; /* Equivalente a 20px */
+  border-radius: 1.6rem;
+  /* Equivalente a 16px */
+  padding: 2rem;
+  /* Equivalente a 20px */
   margin-bottom: 1.6rem;
   box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.4);
 }
-
-.card-header {
+.main .card .card-header {
   margin-bottom: 2rem;
 }
-.card-header span {
-  font-size: 1rem; /* Equivalente a 10px */
+.main .card .card-header span {
+  font-size: 1rem;
+  /* Equivalente a 10px */
   color: #9ba1a6;
-  letter-spacing: 0.1rem; /* Equivalente a 1px */
+  letter-spacing: 0.1rem;
+  /* Equivalente a 1px */
   font-weight: 700;
   display: block;
   margin-bottom: 0.4rem;
 }
-.card-header h2 {
-  font-size: 1.8rem; /* Equivalente a 18px */
+.main .card .card-header h2 {
+  font-size: 1.8rem;
+  /* Equivalente a 18px */
   font-weight: 700;
 }
-
-/* Formulário */
-.input-group {
+.main form .input-group {
   margin-bottom: 1.6rem;
 }
-.input-group label {
+.main form .input-group label {
   display: block;
-  font-size: 1.2rem; /* Equivalente a 12px */
+  font-size: 1.2rem;
+  /* Equivalente a 12px */
   color: #9ba1a6;
   margin-bottom: 0.6rem;
 }
-.input-group input {
+.main form .input-group input[type=datetime-local] {
+  color: #fff;
+  /* Muda a cor do texto digitado */
+  /* Adicione esta linha para deixar o ícone do calendário branco: */
+}
+.main form .input-group input[type=datetime-local]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+.main form .input-group input {
   width: 100%;
   background-color: #0b0b0f;
   border: 1px solid #2a2a3c;
-  border-radius: 0.8rem; /* Equivalente a 8px */
-  padding: 1.2rem; /* Equivalente a 12px */
+  border-radius: 0.8rem;
+  /* Equivalente a 8px */
+  padding: 1.2rem;
+  /* Equivalente a 12px */
   color: #fff;
-  font-size: 1.4rem; /* Equivalente a 14px */
+  font-size: 1.4rem;
+  /* Equivalente a 14px */
 }
-.input-group input:focus {
+.main form .input-group input:focus {
   outline: none;
   border-color: #f3c653;
 }
-
-.btn-submit {
+.main form .btn-submit {
   width: 100%;
   background-color: #f3c653;
   color: #0b0b0f;
@@ -116,18 +132,16 @@ body {
   cursor: pointer;
   transition: opacity 0.2s;
 }
-.btn-submit:hover {
+.main form .btn-submit:hover {
   opacity: 0.9;
 }
-
-/* Bloco da Contagem Regressiva Principal */
-.card-header-flex {
+.main .card-header-flex {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 2rem;
 }
-.card-header-flex .subtitle {
+.main .card-header-flex .subtitle {
   font-size: 1rem;
   color: #9ba1a6;
   letter-spacing: 0.1rem;
@@ -135,44 +149,46 @@ body {
   display: block;
   margin-bottom: 0.4rem;
 }
-.card-header-flex h2 {
+.main .card-header-flex h2 {
   font-size: 1.8rem;
   font-weight: 700;
 }
-.card-header-flex .update-info {
-  font-size: 1.1rem; /* Equivalente a 11px */
+.main .card-header-flex .update-info {
+  font-size: 1.1rem;
+  /* Equivalente a 11px */
   color: #9ba1a6;
   text-align: right;
 }
-
-.countdown-timers {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem; /* Equivalente a 10px */
+.main .countdown-timers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  /* Equivalente a 10px */
 }
-.countdown-timers .timer-box {
+.main .countdown-timers .timer-box {
   background-color: #0b0b0f;
   border: 1px solid #22222f;
-  border-radius: 1.2rem; /* Equivalente a 12px */
+  border-radius: 1.2rem;
+  /* Equivalente a 12px */
   padding: 1.6rem;
   text-align: center;
+  flex: 1 1 calc(25% - 0.5rem);
 }
-.countdown-timers .timer-box .timer-number {
+.main .countdown-timers .timer-box .timer-number {
   display: block;
-  font-size: 2.8rem; /* Equivalente a 28px */
+  font-size: 2.8rem;
+  /* Equivalente a 28px */
   font-weight: 800;
   color: #fff;
   margin-bottom: 0.4rem;
 }
-.countdown-timers .timer-box .timer-label {
+.main .countdown-timers .timer-box .timer-label {
   font-size: 1rem;
   color: #9ba1a6;
   letter-spacing: 0.1rem;
   font-weight: 600;
 }
-
-/* Seção de Eventos Salvos */
-.saved-section .subtitle {
+.main .saved-section .subtitle {
   font-size: 1rem;
   color: #9ba1a6;
   letter-spacing: 0.1rem;
@@ -180,19 +196,17 @@ body {
   display: block;
   margin-bottom: 0.4rem;
 }
-.saved-section h2 {
+.main .saved-section h2 {
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1.2rem;
 }
-
-.saved-grid {
+.main .saved-section .saved-grid {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
-
-.saved-card {
+.main .saved-section .saved-card {
   background-color: #121218;
   border: 1px solid #22222f;
   border-radius: 1.2rem;
@@ -201,16 +215,16 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.saved-card .saved-info h3 {
+.main .saved-section .saved-card .saved-info h3 {
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 0.2rem;
 }
-.saved-card .saved-info p {
+.main .saved-section .saved-card .saved-info p {
   font-size: 1.1rem;
   color: #9ba1a6;
 }
-.saved-card .saved-badge {
+.main .saved-section .saved-card .saved-badge {
   font-size: 1.1rem;
   color: #9ba1a6;
   background-color: #0b0b0f;
@@ -218,20 +232,16 @@ body {
   border-radius: 0.6rem;
   border: 1px solid #22222f;
 }
-
-.saved-card.active-saved {
+.main .saved-section .saved-card.active-saved {
   border-color: #44445c;
 }
 
-/* =================================================_
-   2. MEDIA QUERY PARA TABLET (A partir de 768px)
-   ================================================= */
-@media (min-width: 76.8rem) { /* Equivalente a 768px */
+@media (min-width: 768px) {
   body {
-    padding: 3.2rem; /* Equivalente a 32px */
+    padding: 3.2rem;
   }
   .header h1 {
-    font-size: 3.2rem; /* Equivalente a 32px */
+    font-size: 3.2rem;
   }
   .countdown-timers {
     grid-template-columns: repeat(4, 1fr);
@@ -240,7 +250,7 @@ body {
     padding: 2.4rem 1.6rem;
   }
   .countdown-timers .timer-box .timer-number {
-    font-size: 3.6rem; /* Equivalente a 36px */
+    font-size: 3.6rem;
   }
   .saved-grid {
     flex-direction: row;
@@ -249,12 +259,9 @@ body {
     flex: 1;
   }
 }
-/* =================================================_
-   3. MEDIA QUERY PARA DESKTOP (A partir de 1024px)
-   ================================================= */
-@media (min-width: 102.4rem) { /* Equivalente a 1024px */
+@media (min-width: 1024px) {
   .header h1 {
-    font-size: 4rem; /* Equivalente a 40px */
+    font-size: 4rem;
   }
   .dashboard-grid {
     display: grid;
@@ -268,5 +275,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+  main .timer-number {
+    font-size: 4.8rem !important;
+  }
+  main .countdown-card {
+    height: 75% !important;
   }
 }/*# sourceMappingURL=style.css.map */
