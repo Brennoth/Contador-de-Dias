@@ -1,11 +1,16 @@
 const form = document.querySelector(".form")
 let contagem;
+let datasSaves = []
 form.onsubmit = function (event) {
     event.preventDefault();
 
 
     const nameEvent = document.querySelector("#nome-evento").value
     const dateHourEvent = document.querySelector("#data-hora").value
+    const nameEventInput = document.querySelector("#nome-evento")
+    const dataEventInput = document.querySelector("#data-hora") 
+    dataEventInput.value = ""
+    nameEventInput.value = ""
 
     const dataEspecifica = pegarDados(dateHourEvent)
 
@@ -14,7 +19,6 @@ form.onsubmit = function (event) {
         clearInterval(contagem)
     }
 
-    //DESCUBRIR COMO COLOCAR O VALOR QUE ESTA EM "QUANTOTEMPOFALTA" NA VARIAVEL CONTAGEM
     contagem = setInterval(() => {
         let tempoFaltante = QuantoTempoFalta(dataEspecifica)
         mostrarTela(tempoFaltante)
@@ -23,8 +27,23 @@ form.onsubmit = function (event) {
     //função ira mostrar o nome do evento na tela
     mostrarNomeEvento(nameEvent)
     const dataFormatadaBr = formatarDataBr(dataEspecifica)
+    datasSaves.push(dataFormatadaBr.data)
     armazenarEventos(nameEvent, dataFormatadaBr)
+
+
+
 }
+
+
+function selecionarData() {
+    const inputDataHora = document.querySelector("#data-hora")
+    const agora = new Date()
+
+    agora.setMinutes(agora.getMinutes() - agora.getTimezoneOffset());
+    const dataHoraFormatada = agora.toISOString().slice(0, 16);
+    inputDataHora.min = dataHoraFormatada;
+}
+selecionarData()
 
 //essa função retorna os horarios dentro de uma variavel
 function pegarDados(dataHourEvent) {
@@ -89,44 +108,100 @@ function mostrarNomeEvento(nameEvent) {
 
 //ira formatar a data que esta em EN, para pt-BR
 function formatarDataBr(dataEspecifica) {
-    return dataEspecifica.toLocaleDateString("pt-BR", {
-        day: "2-digit",      // Ex: 23
-        month: "short",      // Ex: set.
-        year: "numeric",     // Ex: 2026
-        hour: "2-digit",     // Ex: 11
-        minute: "2-digit"    // Ex: 33
+    return {
+        formatada: dataEspecifica.toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        }),
+        data: dataEspecifica
+    };
+}
+
+function armazenarEventos(nameEvent, dataFormatadaBr) {
+    const divSave = document.querySelector(".saved-grid")
+    divSave.innerHTML += `
+        <div class="saved-card active-saved" data-index="${dataFormatadaBr.data}">
+            <div class="saved-info" >
+                <h3 class="nameEvent">${nameEvent}</h3>
+                <p>${dataFormatadaBr.formatada}</p>
+                <button class="btnClear"> excluir </button>
+            </div>
+        </div>
+    
+    `
+    eventSelecionadoStore()
+    excluirEvento()
+}
+
+//função que ira deletar o evento salvo
+function excluirEvento() {
+    const btnsClear = document.querySelectorAll(".btnClear")
+
+    btnsClear.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const cardEvent = btn.parentElement.parentElement
+            const divCard = btn.parentElement.parentElement
+
+            datasSaves.forEach((data) =>{
+                if(divCard.dataset.index == data){
+
+                    
+                    const index = datasSaves.indexOf(data)
+                    datasSaves.splice(index,1)
+                    
+                    
+                }
+
+            })
+            cardEvent.remove()
+            
+            
+        })
+
+    })
+
+
+
+}
+
+function eventSelecionadoStore() {
+    const divS = document.querySelectorAll(".active-saved")
+
+    divS.forEach((div) => {
+        div.addEventListener("click", () => {
+            datasSaves.forEach((data) => {
+                if (div.dataset.index == data) {
+                    const h3 = div.firstElementChild.firstElementChild.textContent
+                    mostrarNomeEvento(h3)
+                    if (contagem) {
+                        clearInterval(contagem)
+                    }
+
+                    contagem = setInterval(() => {
+                        let tempoFaltante = QuantoTempoFalta(data)
+                        mostrarTela(tempoFaltante)
+                    }, 1000)
+
+
+
+                    // const quantoTempoFalta = QuantoTempoFalta(data)
+                    // console.log(quantoTempoFalta)
+                    // // mostrarTela(quantoTempoFalta)
+                }
+            })
+
+        })
+
     })
 
 }
 
 
-function armazenarEventos(nameEvent, dataFormatadaBr) {
-    const divSave = document.querySelector(".saved-grid")
-    divSave.innerHTML = `
-        <div class="saved-card active-saved">
-            <div class="saved-info">
-                <h3>${nameEvent}</h3>
-                <p>${dataFormatadaBr}</p>
-            </div>
-        </div>
-    
-    `
-}
 
-// 1. Seleciona o elemento do input
-const inputDataHora = document.querySelector("#data-hora");
 
-// 2. Pega a data e hora atuais do sistema
-const agora = new Date();
-
-// 3. Ajusta o fuso horário local para o formato ISO correto
-agora.setMinutes(agora.getMinutes() - agora.getTimezoneOffset());
-
-// 4. Converte para a string no formato exato "YYYY-MM-DDTHH:mm"
-const dataHoraFormatada = agora.toISOString().slice(0, 16);
-
-// 5. Aplica a limitação de data mínima no HTML
-inputDataHora.min = dataHoraFormatada;
 
 
 //toLocaleDateString
